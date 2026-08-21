@@ -1,0 +1,41 @@
+{
+    "name": "y-server",
+    "version": "0.0.0",
+    "description": "X 2.0 in IFPA",
+    "main": "dist/server.ts",
+    "repository": "https://github.com/lunsmat/y-server",
+    "author": "Luan Farias <luan.farias@ifpa.edu.br>",
+    "license": "MIT",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsx watch src/server.ts",
+        "format": "biome format --write src",
+        "lint": "biome check src",
+        "start": "node dist/server.js",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@prisma/adapter-better-sqlite3": "^7.9.1",
+        "@prisma/client": "^7.9.1",
+        "cors": "^2.8.6",
+        "dotenv": "^17.4.2",
+        "express": "^5.2.1"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "2.5.9",
+        "@types/cors": "^2.8.19",
+        "@types/express": "^5.0.6",
+        "@types/node": "^26.2.0",
+        "@types/supertest": "^7.2.1",
+        "prisma": "^7.9.1",
+        "supertest": "^7.2.2",
+        "tsup": "^8.5.1",
+        "tsx": "^4.23.12",
+        "typescript": "^7.0.2",
+        "vitest": "^4.1.11"
+    }
+}

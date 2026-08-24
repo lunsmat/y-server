@@ -1,26 +1,17 @@
-import { prisma } from '@lib/prisma';
 import { Request, Response } from 'express';
+import { UserService } from '@services/UserService';
 
 class UsersController {
-    public async count(request: Request, response: Response): Promise<Response> {
-        const usersCount = await prisma.user.count();
+    private userService: UserService;
 
-        return response.json({
-            count: usersCount
-        });
+    constructor() {
+        this.userService = new UserService();
     }
 
-    public async create(request: Request, response: Response): Promise<Response> {
+    public create = async (request: Request, response: Response): Promise<Response> => {
         const { name, username, email, password } = request.body;
 
-        const user = await prisma.user.create({
-            data: {
-                name,
-                email,
-                password,
-                username
-            }
-        });
+        const user = await this.userService.create(name, username, email, password);
 
         return response.status(201).json({
             user

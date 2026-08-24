@@ -10,7 +10,6 @@ const usersController = new UsersController();
 
 routes.get('/ping', pingController.index);
 
-routes.get('/users/count', usersController.count);
 routes.post("/users", usersController.create);
 
 export default routes;

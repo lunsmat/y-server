@@ -9,6 +9,23 @@ class UsersController {
             count: usersCount
         });
     }
+
+    public async create(request: Request, response: Response): Promise<Response> {
+        const { name, username, email, password } = request.body;
+
+        const user = await prisma.user.create({
+            data: {
+                name,
+                email,
+                password,
+                username
+            }
+        });
+
+        return response.status(201).json({
+            user
+        });
+    }
 }
 
 export default UsersController;

@@ -1,0 +1,25 @@
+info:
+  name: Create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{base_url}}/users"
+  body:
+    type: json
+    data: |-
+      {
+          "name": "Luan Farias",
+          "username": "lunsmat",
+          "email": "luan.farias@ifpa.edu.br",
+          "password": "123456"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true

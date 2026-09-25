@@ -1,5 +1,5 @@
-import { User } from "@prisma/client";
 import { prisma } from "@lib/prisma";
+import { User } from "@prisma/client";
 
 class UserService
 {
@@ -20,6 +20,16 @@ class UserService
 
         return user;
     }
+
+    async emailExists(email: string): Promise<boolean>
+    {
+        const count = await prisma.user.count({
+            where: {
+                email,
+            }
+        });
+        return count !== 0;
+    }
 }
 
-export { UserService}
+export { UserService };

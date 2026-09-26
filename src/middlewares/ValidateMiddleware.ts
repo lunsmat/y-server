@@ -7,7 +7,7 @@ export class ValidateMiddleware
     {
         return (request: Request, response: Response, next: NextFunction): Response | void => {
             try {
-                schema.validate({
+                schema.parse({
                     body: request.body,
                     query: request.query,
                     params: request.params

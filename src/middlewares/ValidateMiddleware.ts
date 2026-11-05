@@ -11,20 +11,19 @@ export class ValidateMiddleware
                     body: request.body,
                     query: request.query,
                     params: request.params
-                })
-
-                return next();
+                });
             } catch (error) {
                 if (error instanceof ZodError)
                 {
                     return response.status(400).json({
+                        error: true,
                         message: "Erro nos dados do usuário",
                         errors: error.issues.map(error => error.message)
                     })
                 }
-
-                return next();
             }
+
+            return next();
         }
     }
 }

@@ -30,6 +30,27 @@ class UserService
         });
         return count !== 0;
     }
+
+    async usernameExists(username: string): Promise<boolean>
+    {
+        const count = await prisma.user.count({
+            where: {
+                username,
+            }
+        });
+        return count !== 0;
+    }
+
+    async getUserByEmail(email: string): Promise<User | null>
+    {
+        const user = await prisma.user.findFirst({
+            where: {
+                email,
+            }
+        });
+
+        return user;
+    }
 }
 
 export { UserService };

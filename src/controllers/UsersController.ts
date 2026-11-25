@@ -1,6 +1,7 @@
 import { UserService } from '@services/UserService';
 import { Request, Response } from 'express';
 import { PasswordUtil } from '../utils/PasswordUtil';
+import { JWTUtil } from '../utils/JWTUtil';
 
 class UsersController {
     private userService: UserService;
@@ -67,11 +68,23 @@ class UsersController {
             ]
         });
 
+        const token = JWTUtil.signUserToken(user.id);
+
         return response.status(200).json({
             error: false,
             message: "Login feito com sucesso",
             data: {
-                user
+                token
+            }
+        });
+    }
+
+    public me = async (request: Request, response: Response): Promise<Response> => {
+        return response.status(200).json({
+            error: false,
+            message: "Login feito com sucesso",
+            data: {
+                user: request.user
             }
         });
     }
